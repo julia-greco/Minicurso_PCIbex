@@ -1,0 +1,34 @@
+
+
+##Instruções para criação do Script de Experimento Auditivo na plataforma Github
+
+1. Crie um documento com extensão .js no dentro de uma pasta intitulada "data_includes" no seu diretório do Github. Para isso vá em "create new file", escreve o nome         da pasta indicado, digite barra ( a inclinada para a direita) e escreva o nome do seu documento de extensão .js (exemplo:"data_includes/meu_script.js"). Não se esqueça de que não pode haver espaços nem caracteres especiais no nome do seu script. Clique em "Commit new file" no final da página.
+
+2. Clique no nome do documento apenas criado e depois clique no ícone de caneta/lápis para começar a editar o seu script. 
+Dica: utilize a função de comentário (qualquer texto que seja precedido por duas barras, "//") para deixar o seu script mas organizado e auxiliá-lo na hora de revisar algum erro possível. Comente o que você acha que o código que você escreveu está realizando, assim, quando o debug localizar um erro você saberá com mais facilidade como e onde consertá-lo.
+
+3. O Primeiro comando que deve ser escrito é "PennController.ResetPrefix(null);". Esse comando é essencial para que o resto dos seus comandos funcione. Ele inativa os prefixos que acompanham as declarações de elementos do PennController, tornando a linguagem mais simples e limpa. Para mais informações sobre esse tópico acesse:https://www.pcibex.net/wiki/penncontroller-resetprefix/
+
+4. O próximo comando a ser escrito é o "Sequence();". Esse comando define a sequência na qual as telas do seu experimento irão aparecer. Nesse ponto é interessante você já ter em mente quantas telas você irá precisar, e também em qual ordem elas aparecerão. No nosso caso, precisaremos de quatro telas: uma de boas-vindas na qual o participante preencha seus dados, uma com as intruções para o experimento, uma com o experimento em si, e uma com instruções finais e um agradecimento pela participação. Um exemplo do uso do "Sequence();" seria:"Sequence("Participante","Instrucoes","Experimento","Final");". Iremos retornar a esse comando posteriormente, para realizar ainda algumas alterações.
+
+5. O comando a seguir é um dos mais básicos na construção de um experimento no PennController, o "newTrial()". Esse comando é o responsável por criar novas telas, dentro das quais elementos serão declarados. Os elementos podem ser caixas de textos, imagens, áudios, botões, etc. todos extremamente importantes na construção do Script. Após digitar o comando e abrir o parêntese, escreva o nome da tela, entre aspas, que você já tinha definido no comando anterior ("Sequence"). Exemplo do uso:
+
+  newTrial("Participante",
+  
+  )
+
+6. O primeiro "Trial" será para coleta de dados sobre o participante, assim dentro dele será necessário ter uma breve mensagem de boas vindas, caixas de texto nas quais o participante digitará informações como seu nome, e-mail, idade, etc. e uma caixa de seleção na qual estará disponível algumas opções de escolaridade. Além disso será preciso ter um botão que possa ser clicado quando os campos de informações forem preenchidos, levando o participante para a próxima tela, ou "trial". Dessa forma primeiro elemento a ser utilizado será o "defaultText", esse comando nos permite definir algumas características gerais do texto como cor e tamanho, além de pré definir que todo elemento "text" será impresso. Exemplo de uso (dentro do "newTrial"):
+
+  defaultText
+    .css("font-size","1.2em")
+    .print()
+  ,
+  
+ O comando ".css" permite alterar várias características do texto, em nosso exemplo alteramos somente o tamanho da fonte ("em" é uma medida específica de fonte utilizada em programação). Já o comando ".print()" exibe o elemento no qual ele foi declarado, no nosso caso é o elemento "text", mas poderia ser um elemento "image", "audio", "button", etc.
+
+  newTrial("Participante",
+    defaultText
+      .css("font-size","1.2em")
+      .print()
+    ,
+  )
