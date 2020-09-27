@@ -11,6 +11,8 @@ Dica: utilize a função de comentário (qualquer texto que seja precedido por d
 
 4. O próximo comando a ser escrito é o "Sequence();". Esse comando define a sequência na qual as telas do seu experimento irão aparecer. Nesse ponto é interessante você já ter em mente quantas telas você irá precisar, e também em qual ordem elas aparecerão. No nosso caso, precisaremos de quatro telas: uma de boas-vindas na qual o participante preencha seus dados, uma com as intruções para o experimento, uma com o experimento em si, e uma com instruções finais e um agradecimento pela participação. Um exemplo do uso do "Sequence();" seria:"Sequence("Participante","Instrucoes","Experimento","Final");". Iremos retornar a esse comando posteriormente, para realizar ainda algumas alterações.
 
+5. Antes de começar a escrever o código principal pode ser útil declarar um cabeçalho, ou um "Header". O comando "Header"
+
 5. O comando a seguir é um dos mais básicos na construção de um experimento no PennController, o "newTrial()". Esse comando é o responsável por criar novas telas, dentro das quais elementos serão declarados. Os elementos podem ser caixas de textos, imagens, áudios, botões, etc. todos extremamente importantes na construção do Script. Após digitar o comando e abrir o parêntese, escreva o nome da tela, entre aspas, que você já tinha definido no comando anterior ("Sequence"). Exemplo do uso:
 
   newTrial("Participante",
@@ -25,6 +27,15 @@ Dica: utilize a função de comentário (qualquer texto que seja precedido por d
   ,
   
  O comando ".css" permite alterar várias características do texto, em nosso exemplo alteramos somente o tamanho da fonte ("em" é uma medida específica de fonte utilizada em programação). Já o comando ".print()" exibe o elemento no qual ele foi declarado, no nosso caso é o elemento "text", mas poderia ser um elemento "image", "audio", "button", etc.
+ 
+7. O próximo elemento a ser escrito será o "newText". O elemento "newText" como o nome sugere, é um elemento de texto, ou seja, sua função é de criar um novo texto que será utilizado no experimento. É neste elemento que você escreverá os textos que aparecerão na tela. Um exemplo de uso seria:
+
+  newText("<p>Bem-vindos!</p>")
+  ,
+
+Observe que além do texto entre aspas há também "<p>" e "</p>". Esses dois símbolos são usados em programação para indicar um parágrafo. "<p>" indica o ínicio do parágrafo enquanto "</p>" indica o fim do mesmo.
+
+8. 
 
   newTrial("Participante",
     defaultText
