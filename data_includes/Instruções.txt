@@ -11,35 +11,132 @@ Dica: utilize a função de comentário (qualquer texto que seja precedido por d
 
 4. O próximo comando a ser escrito é o "Sequence();". Esse comando define a sequência na qual as telas do seu experimento irão aparecer. Nesse ponto é interessante você já ter em mente quantas telas você irá precisar, e também em qual ordem elas aparecerão. No nosso caso, precisaremos de quatro telas: uma de boas-vindas na qual o participante preencha seus dados, uma com as intruções para o experimento, uma com o experimento em si, e uma com instruções finais e um agradecimento pela participação. Um exemplo do uso do "Sequence();" seria:"Sequence("Participante","Instrucoes","Experimento","Final");". Iremos retornar a esse comando posteriormente, para realizar ainda algumas alterações.
 
-5. Antes de começar a escrever o código principal pode ser útil declarar um cabeçalho, ou um "Header". O comando "Header"
+5. Antes de começar a escrever o código principal pode ser útil declarar um cabeçalho, ou um "Header". O comando "Header()" é executado antes de todo "trial" (ou tela) e é útil para estabelecer de antemão as características de alguns elementos, além de definir variáveis globais (variáveis que podem ser utilizadas ao longo de todo o comando). Iremos declarar em nosso exemplo a característica de três elementos além de uma variável global. O comando "defaultText", "defaultInputText" e "defaultButton" pré-define respectivamente os elementos "newText", "newInputText" e "newButton". Os três elementos terão as mesmas duas características (ou os mesmos dois comandos declarados dentro deles): ".css()", com o qual definiremos o tamanho da fonte; e ".print()", comando utilizado para indicar que aquele elemento deve ser impresso na tela. A única excessão será o elemento "newButton", que além dos dois comandos, conterá também ."center()", para centralizar o botão na tela, e .wait()", que interrompe o processamento do programa até que o usuário interaja com o botão. ".wait()" é essencial para o funcionamento do código pois sem ele o programa processaria todos os comandos até a última linha, imprimindo os elementos na tela somente por alguns milessegundos. Abaixo segue o exemplo do "Header()":
 
-5. O comando a seguir é um dos mais básicos na construção de um experimento no PennController, o "newTrial()". Esse comando é o responsável por criar novas telas, dentro das quais elementos serão declarados. Os elementos podem ser caixas de textos, imagens, áudios, botões, etc. todos extremamente importantes na construção do Script. Após digitar o comando e abrir o parêntese, escreva o nome da tela, entre aspas, que você já tinha definido no comando anterior ("Sequence"). Exemplo do uso:
+Header(
+         defaultText
+            .css("font-size","1.2em")
+            .print()
+         ,
+         defaultTextInput
+            .css("font-size","1.2em")
+            .print()
+         ,
+         defaultButton
+            .css("font-size","1.2em")
+            .center()
+            .print()
+            .wait()
+         ,
+         
+)
+
+O tamanho da fonte está em um tamanho muito utilizado dentro da programação, o "em".
+Observe também que até aqui, todos os comandos tinham sido demarcados, "fechados" por ponto e vírgula, mas que agora, dentro de outras estruturas maiores como o "Header" e mais para frente o "Trial", os comandos serão delimitados somente por uma vírgula.
+
+6. O comando a seguir é um dos mais básicos na construção de um experimento no PennController, o "newTrial()". Esse comando é o responsável por criar novas telas, dentro das quais elementos serão declarados. Os elementos podem ser caixas de textos, imagens, áudios, botões, etc. todos extremamente importantes na construção do Script. Após digitar o comando e abrir o parêntese, escreva o nome da tela, entre aspas, que você já tinha definido no comando anterior ("Sequence"). Exemplo do uso:
 
   newTrial("Participante",
   
   )
 
-6. O primeiro "Trial" será para coleta de dados sobre o participante, assim dentro dele será necessário ter uma breve mensagem de boas vindas, caixas de texto nas quais o participante digitará informações como seu nome, e-mail, idade, etc. e uma caixa de seleção na qual estará disponível algumas opções de escolaridade. Além disso será preciso ter um botão que possa ser clicado quando os campos de informações forem preenchidos, levando o participante para a próxima tela, ou "trial". Dessa forma primeiro elemento a ser utilizado será o "defaultText", esse comando nos permite definir algumas características gerais do texto como cor e tamanho, além de pré definir que todo elemento "text" será impresso. Exemplo de uso (dentro do "newTrial"):
+7. O primeiro "Trial" será para coleta de dados sobre o participante, assim dentro dele será necessário ter uma breve mensagem de boas vindas, caixas de texto nas quais o participante digitará informações como seu nome, e-mail, idade, etc. e uma caixa de seleção na qual estará disponível algumas opções de escolaridade. Além disso será preciso ter um botão que possa ser clicado quando os campos de informações forem preenchidos, levando o participante para a próxima tela, ou "trial". Dessa forma o primeiro elemento a ser utilizado será o "newText", como o nome sugere, é um elemento de texto, ou seja, sua função é criar um novo texto que será utilizado no experimento. É nele que você escrevá os textos que aparecerão na tela. Um exemplo de uso seria:
 
-  defaultText
-    .css("font-size","1.2em")
-    .print()
-  ,
-  
- O comando ".css" permite alterar várias características do texto, em nosso exemplo alteramos somente o tamanho da fonte ("em" é uma medida específica de fonte utilizada em programação). Já o comando ".print()" exibe o elemento no qual ele foi declarado, no nosso caso é o elemento "text", mas poderia ser um elemento "image", "audio", "button", etc.
- 
-7. O próximo elemento a ser escrito será o "newText". O elemento "newText" como o nome sugere, é um elemento de texto, ou seja, sua função é de criar um novo texto que será utilizado no experimento. É neste elemento que você escreverá os textos que aparecerão na tela. Um exemplo de uso seria:
+ newText("<p>Por favor, escreva seu NOME COMPLETO na caixa abaixo</p>")
+ ,
 
-  newText("<p>Bem-vindos!</p>")
-  ,
-
+O comando contém só o texto a ser impresso pois, em nosso cabeçalho declaramos que todo elemento "newText" seria impresso (além de formata-lo com o tamanho de fonte ideal). Assim não é necessário adicionar mas nenhum comando para que funcione corretamente.
 Observe que além do texto entre aspas há também "<p>" e "</p>". Esses dois símbolos são usados em programação para indicar um parágrafo. "<p>" indica o ínicio do parágrafo enquanto "</p>" indica o fim do mesmo.
 
-8. 
+ 
+7. O próximo elemento a ser usado será "newTextInput", que terá uma estrutura muito semelhante a "newText". Entretanto, como nosso objetivo ao usar esse elemento é o de receber os dados do participante, entre parênteses teremos, ao invés do conteúdo a ser exeibido, teremos o nome dado ao elemento, que posteriormente será utilizado para recuperar os dados enviados pelo usuário. Ao escolher um nome, tenha o cuidado de manter em mente que o PCIbex não reconhece diacríticos e que ele faz diferença entre maíusculas e minúsculas. Exemplo de uso:
 
-  newTrial("Participante",
-    defaultText
-      .css("font-size","1.2em")
-      .print()
+newTextInput("Nome")
+,
+
+O elemento "newButton" terá a mesma sintaxe que "newTextInput" nesse primeiro "trial". Contudo, nos próximos ele apresentará algumas pequenas mudanças.
+
+8. O elemento a seguir é bem diverso dos que utilizamos até agora. O comando "newDropDown()" cria uma caixa com uma lista vertical na qual os itens podem ser selecionados. Pelo fato do "newDropDown" ser um elemento assim como "newText", newTextInput", etc. ele também conterá ".css()" e ".print()", mas em sua estrutura será declarado ainda dois outros comandos: ".add()", que irá adicionar as opções selecionaveis; e ".log()", que enviará as informações coletadas para o documento de resultados. Exemplo:
+
+ newDropDown("Escolaridade", "Selecione sua escolaridade")
+        .add("Médio completo", "Superior em curso", "Superior completo", "Pós-graduação")
+        .css("font-size","1.2em")
+        .print()
+        .log()
+ ,
+ 
+Observe que a primeira palavra entre aspas é o nome do elemento, enquanto a segunda é o texto padrão que aparecerá antes ser selecionada alguma das opções.
+ 
+ 9. Os comandos utilizados até agora alteraram a estrutura do experimento, moldando ele de acordo com o que foi declarado no script. Mas pouco foi falado sobre os dados coletados e a página de resultados. Os comandos a seguir tratam desse assunto. Todas as nossas caixas de texto receberam nomes, esses serão utilizados no elemento "newVar", que declara uma nova varíavel. Dentro ele, será utilizado: ".global()", que torna a variável global; e ".set(getTextInput())", que atribui os dados coletados nas caixas de texto às variáveis criadas. Exemplo de uso:
+ 
+ newVar("NOME")
+        .global()
+        .set( getTextInput("Nome") )
     ,
-  )
+
+Assim como outros elementos variáveis também tem de ser nomeadas, nesse caso para diferenciar o nome atribuido à caixa de texto do nome da váriavel, esse último foi escrito todo em caixa alta.
+Com esse último comando, podemos finalmente fechar o primeiro "trial" e partir para o próximo.
+
+Até agora essa deve ser a estrutura do "trial" "Participante":
+
+//Cria uma nova tela - Tela de coleta de dados do participante
+newTrial("Participante",
+
+         newText("<p>Bem-Vindos!</p>")
+         ,
+         newText("<p>Neste experimento, você vai ouvir uma frase e depois deve escolher a melhor opção de interpretação para ela.</p>")
+         ,
+         newText("<p>Por favor, escreva seu NOME COMPLETO na caixa abaixo.</p>")
+         ,
+//Cria uma caixa de texto nomedada "Nome" para receber o nome do participante  
+         newTextInput("Nome")
+         ,
+         newText("<p>Por favor, escreva o seu E-MAIL na caixa abaixo.</p>")
+         ,
+         newTextInput("Email")
+         ,
+         newText("<p>Escreva sua IDADE na caixa a abaixo.</p>")
+         ,
+         newTextInput("Idade")
+         ,
+         newText("<p>Agora selecione sua ESCOLARIDADE na caixa abaixo e aperte o botão 'Iniciar' para começar </p>")
+         , 
+//Cria uma caixa com seletores nomeada "Escolaridade" para que o participante selecione sua escolaridade
+         newDropDown("Escolaridade", "Selecione sua escolaridade")
+        .add("Médio completo", "Superior em curso", "Superior completo", "Pós-graduação")
+        .css("font-size","1.2em")
+        .print()
+        .log() //Envia para o arquivo "results" a opção selecionada pelo participante 
+         ,
+//Cria um botão nomeado "Iniciar"
+         newButton("Iniciar")
+         ,
+//Cria uma nova variável chamada "NOME" que recebe o conteúdo da caixa de texto "Nome"
+    newVar("NOME")
+        .global()
+        .set( getTextInput("Nome") )
+    ,
+    newVar("EMAIL")
+        .global()
+        .set( getTextInput("Email") )
+    ,
+    newVar("IDADE")
+        .global()
+        .set( getTextInput("Idade") )
+         
+)
+
+10. Antes de prosseguir para a próxima tela, faremos uso do comando ".log()" novamente, entranto, de uma maneira um pouco diferente. Dessa vez, ao invés de declará-lo com os parênteses em branco iremos dar um nome ao ".log()" e utilizar ".getVar()" para recuperar o conteúdo atribuído às váriáveis criadas na etapa anterior. Assim estaremos enviando os dados contíidos nas varíaveis, isto é, os dados inseridos pelo participante, para o documento de resultados. Segue o exemplo de uso do comando:
+
+.log( "NOME" , getVar("NOME") )
+
+11. O próximo "trial" será nomeado "Instrucoes" e séra composto, basicamente de uma série de "newText" identicos aos utilizados nas etapas anteriores. Ele também terá um botão nomeado "Iniciar" com, a princípio, as mesmas configurações do botão anteriormente criado. No entanto, para termos um controle maior no que diz respeito aos tempos de reação do participante, utilizaremos o comando ".log()" para saber o momento exato em que o usuário iniciou o experimento em si. Assim, nosso exemplo ficará como se segue:
+
+newButton("Iniciar")
+        .log()
+        
+Observe que nesse caso o nosso botão não apresenta uma vírgula no final, o motivo é que por ser o último comando do "trial", não há necessidade de indicar o final do comando, já que o mesmo coincidirá com o final do "trial.
+
+12. 
+        
+
