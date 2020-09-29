@@ -18,9 +18,10 @@ Header(
             .css("font-size","1.2em")
             .print()
          ,
-//Define que toda caixa de texto será impressa na tela e que o tamanho da fonte será "1.2em"
+//Define que todo botão será impresso na tela, que o tamanho da fonte será "1.2em" e que o participante será obrigado a interagir com ele para prosseguir com o experimento
          defaultButton
             .css("font-size","1.2em")
+            .center()
             .print()
             .wait()
          ,
@@ -32,16 +33,69 @@ newTrial("Participante",
 
          newText("<p>Bem-Vindos!</p>")
          ,
-         newText("<p>Neste experimento, você vai ouvir uma frase e depois deve escolher a melhor opção de interpretação para ela</p>")
+         newText("<p>Neste experimento, você vai ouvir uma frase e depois deve escolher a melhor opção de interpretação para ela.</p>")
          ,
-         newText("<p>Por favor, escreva seu NOME COMPLETO na caixa abaixo</p>")
+         newText("<p>Por favor, escreva seu NOME COMPLETO na caixa abaixo.</p>")
          ,
 //Cria uma caixa de texto nomedada "Nome" para receber o nome do participante  
          newTextInput("Nome")
          ,
-         newText("<p>Por favor, escreva o seu E-MAIL na caixa abaixo</p>")
+         newText("<p>Por favor, escreva o seu E-MAIL na caixa abaixo.</p>")
          ,
          newTextInput("Email")
          ,
-         newText("<p>Por favor, 
+         newText("<p>Escreva sua IDADE na caixa a abaixo.</p>")
+         ,
+         newTextInput("Idade")
+         ,
+         newText("<p>Agora selecione sua ESCOLARIDADE na caixa abaixo e aperte o botão 'Iniciar' para começar </p>")
+         , 
+//Cria uma caixa com seletores nomeada "Escolaridade" para que o participante selecione sua escolaridade
+         newDropDown("Escolaridade", "Selecione sua escolaridade")
+        .add("Médio completo", "Superior em curso", "Superior completo", "Pós-graduação")
+        .css("font-size","1.2em")
+        .print()
+        .log() //Envia para o arquivo "results" a opção selecionada pelo participante 
+         ,
+//Cria um botão nomeado "Iniciar"
+         newButton("Iniciar")
+         ,
+//Cria uma nova variável chamada "NOME" que recebe o conteúdo da caixa de texto "Nome"
+    newVar("NOME")
+        .global()
+        .set( getTextInput("Nome") )
+    ,
+    newVar("EMAIL")
+        .global()
+        .set( getTextInput("Email") )
+    ,
+    newVar("AGE")
+        .global()
+        .set( getTextInput("Idade") )
+         
+)
+
+//Envia para o arquivo "results" o conteúdo da variável "NOME"
+.log( "NOME" , getVar("NOME") )
+.log( "EMAIL" , getVar("EMAIL") )
+.log( "AGE" , getVar("AGE") )
+
+//Nova tela - Tela de instruções do treino
+newTrial("Instrucoes",
+         
+    newText("<p>Vamos realizar um pequeno treino para você se familiarizar com o experimento.</p>")
+    ,
+    newText("<p>INSTRUÇÕES:</p>")
+    ,
+    newText("<p>Ouça a frase com atenção e depois clique no botão 'Próximo' para ver as duas opções de interpretação: <strong>A</strong> e <strong>B</strong>.</p>")
+    ,
+    newText("<p>Clique em cima da opção que você acha que é a melhor, de acordo com a frase que você ouviu.</p>")
+    ,
+    newText("<p>Se possível, utilize fones de ouvido para realizar o experimento.</p>")
+    ,
+    newText("<p>Aperte 'Iniciar' para começar.</p>")
+    ,
+    //Cria um novo botão nomeado "Iniciar" e envia para o arquivo "results" a informação de quando ele é pressionado
+    newButton("Iniciar")
+        .log()
 )
