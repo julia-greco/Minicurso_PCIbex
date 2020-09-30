@@ -24,9 +24,9 @@ Header(
             .center()
             .print()
             .wait()
-         ,
-         
+         ,         
 )
+
 
 //Cria uma nova tela - Tela de coleta de dados do participante
 newTrial("Participante",
@@ -146,3 +146,19 @@ Template("tabela_script_auditivo.csv",
     .log("Group", variable.Group)
     .log("Item", variable.item)
 );
+
+//Nova Tela - Tela final    
+newTrial( "Final" ,
+    newText("<p> O experimento foi conclu&iacute;do. Obrigada pela participa&ccedil;&atilde;o!</p>")
+        .css("font-size","1.2em")
+        .print()
+    ,
+    newText("<p> Voc&ecirc; receber&aacute; um e-mail com a sua declara&ccedil;&atilde;o de participa&ccedil;&atilde;o.</p>")
+        .css("font-size","1.2em")
+        .print()
+        .wait()
+ )
+
+//Ajeita a barra de pogresso para que ela fique completa
+.setOption("countsForProgressBar",false);
+//Fim do Script
