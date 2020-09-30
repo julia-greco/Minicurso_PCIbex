@@ -4,7 +4,7 @@
 PennController.ResetPrefix(null);
 
 //Define a sequência de telas do experimento
-Sequence("Participante", "Instrucoes", "Experimento", "Final");
+Sequence("Participante", "Instrucoes", randomize("Experimento"), SendResults(), "Final");
 
 //Cria um cabeçalho. Todos os comandos dentro do cabeçalho serão rodados automaticamente antes de cada "trial"
 Header(
@@ -99,3 +99,50 @@ newTrial("Instrucoes",
     newButton("Iniciar")
         .log()
 )
+
+//Indica o uso da tabela "treino_script_auditivo.csv"
+Template("tabela_script_auditivo.csv",
+// "variable" vai automaticamente apontar para cada linha da tabela "tabela_script_auditivo.csv"
+    variable => newTrial( "Experimento",
+//"variable" aponta para todas as linhas da coluna "AudioExperimento" da tabela "tabela_script_auditivo.csv" e toca o audio referente a elas
+        newAudio("AudioExperimento", variable.AudioExperimento)
+            .play()
+        ,
+//Exibe na tela a imagem "alto_falante_icone.png"
+        newImage("alto_falante_icone.png")
+            .size( 90 , 90 )
+            .print()
+       
+        ,
+//Cria um botão nomeado "Próximo", envia para o arquivo "results" a informação de quando ele foi pressionado e remove ele da tela
+        newButton("Próximo")
+            .log()
+            .remove()
+        ,
+//Remove a imagem "alto_falante_icone.png" 
+        getImage("alto_falante_icone.png")
+            .remove()
+        ,
+        //Cria um novo texto nomeado "A" e "variable" aponta para todas as linhas da coluna "SentencaA" e imprime o texto presente nelas 
+        newText("A",variable.SentencaA)
+        ,
+        newText("B",variable.SentencaB)
+        ,
+        //Cria um canvas (uma caixa) e coloca os textos "A" e "B" um ao lado do outro
+        newCanvas( 1400 , 700 )
+            .add( 50 , 100 , getText("A") )
+            .add( 750 , 100 , getText("B") )
+            .print() //Agora, dentro do canvas, é que os textos "A" e "B" serão impressos na tela
+        ,
+        //Possibilita a seleção dos textos "A" e "B" através do mouse ou das teclas "A" e "B". Também envia para o arquivo "result" qual texto foi selecionado
+        newSelector()
+            .add( getText("A") , getText("B") )
+            .keys("A","B")
+            .log()
+            .wait()
+    )
+         
+    //Envia para o arquivo "results" o conteúdo da coluna "Group" 
+    .log("Group", variable.Group)
+    .log("Item", variable.item)
+);
