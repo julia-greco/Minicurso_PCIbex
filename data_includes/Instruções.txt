@@ -9,7 +9,11 @@ Dica: utilize a função de comentário (qualquer texto que seja precedido por d
 
 3. O Primeiro comando que deve ser escrito é "PennController.ResetPrefix(null);". Esse comando é essencial para que o resto dos seus comandos funcione. Ele inativa os prefixos que acompanham as declarações de elementos do PennController, tornando a linguagem mais simples e limpa. Para mais informações sobre esse tópico acesse:https://www.pcibex.net/wiki/penncontroller-resetprefix/
 
-4. O próximo comando a ser escrito é o "Sequence();". Esse comando define a sequência na qual as telas do seu experimento irão aparecer. Nesse ponto é interessante você já ter em mente quantas telas você irá precisar, e também em qual ordem elas aparecerão. No nosso caso, precisaremos de quatro telas: uma de boas-vindas na qual o participante preencha seus dados, uma com as intruções para o experimento, uma com o experimento em si, e uma com instruções finais e um agradecimento pela participação. Um exemplo do uso do "Sequence();" seria:"Sequence("Participante","Instrucoes","Experimento","Final");". Iremos retornar a esse comando posteriormente, para realizar ainda algumas alterações.
+4. O próximo comando a ser escrito é o "Sequence();". Esse comando define a sequência na qual as telas do seu experimento irão aparecer. Nesse ponto é interessante você já ter em mente quantas telas você irá precisar, e também em qual ordem elas aparecerão. No nosso caso, precisaremos de quatro telas: uma de boas-vindas na qual o participante preencha seus dados, uma com as intruções para o experimento, uma com o experimento em si, e uma com instruções finais e um agradecimento pela participação. Um exemplo do uso do "Sequence();" seria:
+
+Sequence("Participante", "Instrucoes", randomize("Experimento"), SendResults(), "Final");.
+
+Antes da tela "Experimento" foi utilizado o comando "randomize()", que aleatoriza automaticamente os itens exibidos dentro de experimento. Também foi adicionado um comando antes de "Final", o "SendResults()". Esse comando salva automaticamente os dados coletados antes de exibir a tela "Final", garantindo que não se perca os resultados por uma confusão do participante.
 
 5. Antes de começar a escrever o código principal pode ser útil declarar um cabeçalho, ou um "Header". O comando "Header()" é executado antes de todo "trial" (ou tela) e é útil para estabelecer de antemão as características de alguns elementos, além de definir variáveis globais (variáveis que podem ser utilizadas ao longo de todo o comando). Iremos declarar em nosso exemplo a característica de três elementos além de uma variável global. O comando "defaultText", "defaultInputText" e "defaultButton" pré-define respectivamente os elementos "newText", "newInputText" e "newButton". Os três elementos terão as mesmas duas características (ou os mesmos dois comandos declarados dentro deles): ".css()", com o qual definiremos o tamanho da fonte; e ".print()", comando utilizado para indicar que aquele elemento deve ser impresso na tela. A única excessão será o elemento "newButton", que além dos dois comandos, conterá também ."center()", para centralizar o botão na tela, e .wait()", que interrompe o processamento do programa até que o usuário interaja com o botão. ".wait()" é essencial para o funcionamento do código pois sem ele o programa processaria todos os comandos até a última linha, imprimindo os elementos na tela somente por alguns milessegundos. Abaixo segue o exemplo do "Header()":
 
@@ -32,7 +36,7 @@ Header(
 )
 
 O tamanho da fonte está em um tamanho muito utilizado dentro da programação, o "em".
-Observe também que até aqui, todos os comandos tinham sido demarcados, "fechados" por ponto e vírgula, mas que agora, dentro de outras estruturas maiores como o "Header" e mais para frente o "Trial", os comandos serão delimitados somente por uma vírgula.
+Observe também que até aqui, todos os comandos tinham sido demarcados, "fechados" por ponto e vírgula, mas que agora, dentro de outras estruturas maiores como o "Header" e mais para frente o "Trial", os comandos serão delimitados somente por uma vírgula. Mas atenção não há necessidade de colocar vírgula no último comando declarado em um "Header" ou um "Trial", já que o final dele coincidirá com o final da estrutura.
 
 6. O comando a seguir é um dos mais básicos na construção de um experimento no PennController, o "newTrial()". Esse comando é o responsável por criar novas telas, dentro das quais elementos serão declarados. Os elementos podem ser caixas de textos, imagens, áudios, botões, etc. todos extremamente importantes na construção do Script. Após digitar o comando e abrir o parêntese, escreva o nome da tela, entre aspas, que você já tinha definido no comando anterior ("Sequence"). Exemplo do uso:
 
@@ -135,8 +139,73 @@ newTrial("Participante",
 newButton("Iniciar")
         .log()
         
-Observe que nesse caso o nosso botão não apresenta uma vírgula no final, o motivo é que por ser o último comando do "trial", não há necessidade de indicar o final do comando, já que o mesmo coincidirá com o final do "trial.
+12. O "Trial" a seguir será o mais crucial, já que é nele que desenvolveremos a estrutura principal do experimento. Diferente das telas que contruímos até agora, ao invés de começarmos com um "newTrial()", iremos iniciar com comando "Template()". Esse comando irá agir de uma forma semelhante ao comando "default", entretanto, ao invés de definir previamente a característica de algum elemento, o "Template" irá definir a estrutura de vários "Trial" cujo os dados serão processador a partir de uma tabela (para saber mais sobre a criação dessa tabela acesse a pasta "chunk_includes" nesse repositório e leia o documento "Instruções"). Assim iremos declarar o nosso novo "Trial", nomeado "Experimento" dentro de "Template". Exemplo de uso:
 
-12. 
+
+Template("minha_tabela.csv",
+
+         variable => newTrial( "Experimento",    
+                     )
+)
+
+Template irá receber então o nome da tabela na qual os estímulos do experimento estarão registrados. Ainda teremos a crição de uma função que apontará para todas as linhas da tabela específicada. Essa função no nosso exemplo recebeu o nome de "variable", o mesmo nome que aparece no tutorial fornecido no site do PCIbex, contudo você também a encontrará nomeada como "row" em algumas partes da documentação disponível no site.
+
+13. Agora, dentro do novo "Trial" criado utilizaremos o comando "newAudio()", que irá reproduzir os áudios indicados. Como "newAudio" é um elemento sonoro, ao invés de utilizar o comando ".print()" para exibi-lo utilizaremos o comando ".play()". Exemplo do uso:
+
+newAudio("AudioExperimento", variable.AudioExperimento)
+            .play()
+        ,
         
+"Variable" aparece aqui novamente, e, dessa vez ela apontará para todas as linhas da coluna "AudioExperimento" presente na tabela, portanto tome cuidado para não escrever o nome errado da coluna na qual estão citados os seus áudios, caso contrário o programa não conseguirá encontrar os seus arquivos.
+
+14. Para ilustrar ao participante que um áudio será tocado, é interessante exibir uma imagem que indique tal ação, como, por exemplo, a imagem de um auto-falante. Assim o utilizaremos a seguir o comando "newImage()" para a exibição de imagens. Como os outros elementos vistos anteriormente, será necessário declarar o comando ".print()", utilizaremos também o comando ".size()", que determina o tamanho da imagem. Um exemplo do uso desse elemento:
+
+newImage("alto_falante_icone.png")
+            .size( 90 , 90 )
+            .print()
+        ,
+
+15. Para o participante seja levado para a próxima parte do experimento, no qual ele analisará duas sentenças, iremos utilizar novamente um botão, e novamente o botão terá mais uma modificação dentre as que vimos até agora. Além de adicionarmos o comando ".log()" mais uma vez, adicionaremos também o comando ".remove()", que irá remover o botão da tela assim que o mesmo for clicado. Isso se faz necessário pois não iremos declarar outro trial dentro do nosso "Template", e portanto, tudo que adicionarmos na tela permanecerá, a não ser que seja removido por meio desse comando. Exemplo:
+
+ newButton("Próximo")
+            .log()
+            .remove()
+        ,
+        
+16. Como dito anteriormente, nesse "Trial" precisaremos remover tudo que for adicionado. Para remover a imagem que adicionamos utilizaremos o comando "getImage()" em conjunto com o comando ".remove()", identificando a imagem criada anteriormente e a removendo. Exemplo:
+
+getImage("alto_falante_icone.png")
+            .remove()
+        ,
+        
+17. Depois de ouvir o áudio, o participante irá ler duas sentenças, portanto iremos utilizar dois "newText", entretanto, ao invés de escrevermos o texto que será impresso diretamente no elemento, utilizaremos "variable" para retomar as sentenças presentes na tabela. Exemplo:
+
+newText("A",variable.SentencaA)
+        ,
+        
+Note que demos um nome ao novo texto criado: "A". Esse nome será utilizado no comando a seguir.
+
+18. Ao imprimir os textos na tela, eles automaticamente se posicionam um em baixo do outro, o que até agora não se apresentou um problema. Entretanto, é interessante que o participante possa ler as duas sentenças lado a lado. Para isso utilizaremos o comando "newCanvas()", que faz com que seja possível alterar a posição das sentenças na tela. Entre os parenteses do nosso "Canvas" iremos definir a largura total da nossa tela em pixels. Com o comando ".add()" em conjunto com o comando "getText()", iremos recuperar os textos já criados e posicioná-los na tela utilizando medidas novamente em pixels. Exemplo:
+
+newCanvas( 1400 , 700 )
+            .add( 50 , 100 , getText("A") )
+            .add( 750 , 100 , getText("B") )
+            .print() 
+        ,
+
+A medida à esquerda corresponde à largura da tela, enquanto a medida à direita corresponde à altura da tela. Perceba que no posicionamento das nossa sentenças a altura é a mesma, enquanto a largura é diferente, porque queremos que as frases fiquem lado a lado, mas não em cima uma da outra. Repare também que aqui utilizamos o comando ".print()", isso ocorre pois, apesar de todo "newText" declarado no script ser impresso na tela por pré-definição (no nosso caso), o "newCanvas" é um novo elemento, e como todo outro elemento visual precisa ser impresso para que suas alterações se tornem visíveis.
+
+19. O último comando novo que utilizaremos em nosso script é o "newSelector". Esse comando possibilita que o participante escolha uma das sentenças, tanto por mouse quanto por teclas. Para que o seleção por mouse das sentenças possa ocorrer, dentro do "newSelector" utilizaremos o comando ".add()" novamente em conjunto com "getText()" para retomar as sentenças exibidas. Já para a seleção por teclas será utilizado o comando ".keys()", dentro do qual indicaremos entre aspas quais teclas serão as seletoras. Iremos declarar ainda os comandos ".wait()" e ".log()". Exemplo:
+
+ newSelector()
+            .add( getText("A") , getText("B") )
+            .keys("A","B")
+            .log()
+            .wait()
+    )
+
+20. Após fechar o "Trial" mas antes de fechar o "Template" adicionaremos os dois últimos comandos ".log()". Nesse caso eles irão retomar outras duas colunas da tabela criada: "Item" e "Group", portanto iremos utilizar "variable". Exemplo:
+
+.log("Group", variable.Group)
+
 
