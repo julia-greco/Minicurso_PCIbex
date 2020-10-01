@@ -144,7 +144,7 @@ Template("tabela_script_auditivo.csv",
          
     //Envia para o arquivo "results" o conteúdo da coluna "Group" 
     .log("Group", variable.Group)
-    .log("Item", variable.item)
+    .log("Item", variable.Item)
 );
 
 //Nova Tela - Tela final    
