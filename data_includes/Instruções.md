@@ -1,15 +1,15 @@
 
 
-## Instruções para criação do Script de Experimento Auditivo na plataforma Github
+<center> ## Instruções para criação do Script de Experimento Auditivo na plataforma Github </center>
 
-1. Crie um documento com extensão **.js**  dentro de uma pasta intitulada **data_includes** no seu diretório do Github. Para isso vá em **create new file**, escreva o nome da pasta indicado, digite barra ( a inclinada para a direita) e escreva o nome do seu documento de extensão **.js** (exemplo:**data_includes/meu_script.js**). Não se esqueça de que não pode haver **espaços** nem **caracteres especiais** no nome do seu script. Clique em **Commit new file** no final da página.
+1 Crie um documento com extensão **.js**  dentro de uma pasta intitulada **data_includes** no seu diretório do Github. Para isso vá em **create new file**, escreva o nome da pasta indicado, digite barra ( a inclinada para a direita) e escreva o nome do seu documento de extensão **.js** (exemplo:**data_includes/meu_script.js**). Não se esqueça de que não pode haver **espaços** nem **caracteres especiais** no nome do seu script. Clique em **Commit new file** no final da página.
 
-2. Clique no nome do documento apenas criado e depois clique no ícone de caneta/lápis para começar a editar o seu script. 
+2 Clique no nome do documento apenas criado e depois clique no ícone de caneta/lápis para começar a editar o seu script. 
 **Dica**: utilize a função de comentário (qualquer texto que seja precedido por duas barras, **//**) para deixar o seu script mas organizado e auxiliá-lo na hora de revisar algum erro possível. Comente o que você acha que o código que você escreveu está realizando, assim, quando o *debug* localizar um erro você saberá com mais facilidade como e onde consertá-lo.
 
-3. O Primeiro comando que deve ser escrito é `PennController.ResetPrefix(null);`. Esse comando é essencial para que o resto dos seus comandos funcione. Ele inativa os prefixos que acompanham as declarações de elementos do PennController, tornando a linguagem mais simples e limpa. Para mais informações sobre esse tópico acesse a página da documentação sobre [Reset Prefix](https://www.pcibex.net/wiki/penncontroller-resetprefix/)
+3 O Primeiro comando que deve ser escrito é `PennController.ResetPrefix(null);`. Esse comando é essencial para que o resto dos seus comandos funcione. Ele inativa os prefixos que acompanham as declarações de elementos do PennController, tornando a linguagem mais simples e limpa. Para mais informações sobre esse tópico acesse a página da documentação sobre [Reset Prefix](https://www.pcibex.net/wiki/penncontroller-resetprefix/)
 
-4. O próximo comando a ser escrito é o `Sequence()` Esse comando define a sequência na qual as telas do seu experimento irão aparecer. Nesse ponto é interessante você já ter em mente quantas telas você irá precisar, e também em qual ordem elas aparecerão. No nosso caso, precisaremos de quatro telas: uma de boas-vindas na qual o participante preencha seus dados, uma com as intruções para o experimento, uma com o experimento em si, e uma com instruções finais e um agradecimento pela participação. Um exemplo do uso do `Sequence` seria:
+4 O próximo comando a ser escrito é o `Sequence()` Esse comando define a sequência na qual as telas do seu experimento irão aparecer. Nesse ponto é interessante você já ter em mente quantas telas você irá precisar, e também em qual ordem elas aparecerão. No nosso caso, precisaremos de quatro telas: uma de boas-vindas na qual o participante preencha seus dados, uma com as intruções para o experimento, uma com o experimento em si, e uma com instruções finais e um agradecimento pela participação. Um exemplo do uso do `Sequence` seria:
 
    - `Sequence("Participante", "Instrucoes", randomize("Experimento"), SendResults(), "Final");.`
 
