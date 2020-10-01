@@ -2,7 +2,7 @@
 
 //Inativa os prefixos do PennController (sem esse comando os códigos não funcionam)
 PennController.ResetPrefix(null);
-
+PennController.DebugOff();
 //Define a sequência de telas do experimento
 Sequence("Participante", "Instrucoes", randomize("Experimento"), SendResults(), "Final");
 
