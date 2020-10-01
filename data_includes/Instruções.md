@@ -35,7 +35,7 @@ Header(
          
 )
 ```
-- O tamanho da fonte está em uma medida muito utilizada dentro da programação, o *em*. Se quiser se informar mais sobre isso acesse o artigo da [Wikipedia](https://en.wikipedia.org/wiki/Em_(typography) sobre a medida.
+- O tamanho da fonte está em uma medida muito utilizada dentro da programação, o *em*. Se quiser se informar mais sobre isso acesse o artigo da [Wikipedia](https://en.wikipedia.org/wiki/Em_(typography)) sobre a medida.
 Observe também que até aqui, todos os comandos tinham sido demarcados por **ponto e vírgula**, mas que agora, dentro de outras estruturas maiores como o *Header*, e, mais para frente o *Trial*, os comandos serão delimitados somente por uma **vírgula**. Mas **atenção** não há necessidade de colocar vírgula no último comando declarado dentro dessas estruturas mencionadas, já que o final dele coincidirá com o final da estrutura.
 
 6. O comando a seguir é um dos mais básicos na construção de um experimento no *PennController*, o `newTrial()`. Esse comando é o responsável por criar novas telas, dentro das quais *Elements* serão declarados. Os *Elements* podem ser caixas de textos, imagens, áudios, botões, etc. todos extremamente importantes na construção do *script*. Após digitar o comando e abrir o parêntese, escreva o nome da tela, entre aspas, que você já tinha definido no comando anterior (`Sequence()`). Exemplo:
