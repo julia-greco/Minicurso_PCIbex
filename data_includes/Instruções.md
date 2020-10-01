@@ -19,18 +19,18 @@
 ```javascript
 Header(
          defaultText
-            .css("font-size","1.2em")
-            .print()
+                  .css("font-size","1.2em")
+                  .print()
          ,
          defaultTextInput
-            .css("font-size","1.2em")
-            .print()
+                  .css("font-size","1.2em")
+                  .print()
          ,
          defaultButton
-            .css("font-size","1.2em")
-            .center()
-            .print()
-            .wait()
+                  .css("font-size","1.2em")
+                  .center()
+                  .print()
+                  .wait()
          ,
          
 )
@@ -40,14 +40,14 @@ Observe também que até aqui, todos os comandos tinham sido demarcados por **po
 
 6. O comando a seguir é um dos mais básicos na construção de um experimento no *PennController*, o `newTrial()`. Esse comando é o responsável por criar novas telas, dentro das quais *Elements* serão declarados. Os *Elements* podem ser caixas de textos, imagens, áudios, botões, etc. todos extremamente importantes na construção do *script*. Após digitar o comando e abrir o parêntese, escreva o nome da tela, entre aspas, que você já tinha definido no comando anterior (`Sequence()`). Exemplo:
 ```javascript
-  newTrial("Participante",
+newTrial("Participante",
   
-  )
+)
 ```
 7. O primeiro *Trial* será para coleta de dados sobre o participante, assim dentro dele será necessário ter uma breve mensagem de boas vindas, caixas de texto nas quais o participante digitará informações como seu nome, e-mail, idade, etc. e uma caixa de seleção na qual estará disponível algumas opções de escolaridade. Além disso será preciso ter um botão que possa ser clicado quando os campos de informações forem preenchidos, levando o participante para a próxima tela. Dessa forma o primeiro elemento a ser utilizado será o `newText()`. como o nome sugere, é um elemento de texto, ou seja, sua função é criar um novo texto que será utilizado no experimento. É nele que você escreverá as frases que aparecerão na tela. Um exemplo de do seu uso seria:
 ```javascript
- newText("<p>Por favor, escreva seu NOME COMPLETO na caixa abaixo</p>")
- ,
+newText("<p>Por favor, escreva seu NOME COMPLETO na caixa abaixo</p>")
+,
 ```
 - O comando contém só o texto a ser impresso pois, em nosso cabeçalho, declaramos que todo *Element* `newText()` seria impresso (além de formata-lo com o tamanho de fonte ideal). Assim não é necessário adicionar mais nenhum comando para que funcione corretamente.
 Observe que além do texto entre aspas há também `<p>` e `</p>`. Esses dois símbolos são usados em programação para indicar um parágrafo. `<p>` indica o ínicio do parágrafo enquanto `</p>` indica o fim.
@@ -61,12 +61,12 @@ newTextInput("Nome")
 
 8. O *Element* a seguir é bem diverso dos que utilizamos até agora. O comando `newDropDown()` cria uma caixa com uma lista vertical na qual os itens podem ser selecionados. Pelo fato do `newDropDown()` ser um *Element* assim como `newText()`, `newTextInput`, etc. ele também conterá `.css()` e `.print()`, mas em sua estrutura será declarado ainda dois outros comandos: `.add()`, que irá adicionar as opções selecionaveis; e `.log()`, que enviará as informações coletadas para o documento de resultados. Exemplo:
 ```javascript
- newDropDown("Escolaridade", "Selecione sua escolaridade")
-        .add("Médio completo", "Superior em curso", "Superior completo", "Pós-graduação")
-        .css("font-size","1.2em")
-        .print()
-        .log()
- ,
+newDropDown("Escolaridade", "Selecione sua escolaridade")
+         .add("Médio completo", "Superior em curso", "Superior completo", "Pós-graduação")
+         .css("font-size","1.2em")
+         .print()
+         .log()
+,
 ``` 
 - Observe que a primeira palavra entre aspas é o nome do *Element*, enquanto a segunda é o texto padrão que aparecerá antes ser selecionada alguma das opções.
  
@@ -106,29 +106,29 @@ newTrial("Participante",
          , 
 //Cria uma caixa com seletores nomeada "Escolaridade" para que o participante selecione sua escolaridade
          newDropDown("Escolaridade", "Selecione sua escolaridade")
-        .add("Médio completo", "Superior em curso", "Superior completo", "Pós-graduação")
-        .css("font-size","1.2em")
-        .print()
-        .log() //Envia para o arquivo "results" a opção selecionada pelo participante 
+                  .add("Médio completo", "Superior em curso", "Superior completo", "Pós-graduação")
+                  .css("font-size","1.2em")
+                  .print()
+                  .log() //Envia para o arquivo "results" a opção selecionada pelo participante 
          ,
 //Cria um botão nomeado "Iniciar"
          newButton("Iniciar")
          ,
 //Cria uma nova variável chamada "NOME" que recebe o conteúdo da caixa de texto "Nome"
-    newVar("NOME")
-        .global()
-        .set( getTextInput("Nome") )
-    ,
-    newVar("EMAIL")
-        .global()
-        .set( getTextInput("Email") )
-    ,
-    newVar("IDADE")
-        .global()
-        .set( getTextInput("Idade") )
+         newVar("NOME")
+                  .global()
+                  .set( getTextInput("Nome") )
+         ,
+         newVar("EMAIL")
+                  .global()
+                  .set( getTextInput("Email") )
+          ,
+         newVar("IDADE")
+                  .global()
+                  .set( getTextInput("Idade") )
          
 )
-```javascript
+```
 10. Antes de prosseguir para a próxima tela, faremos uso do comando `.log()` novamente, entranto, de uma maneira um pouco diferente. Dessa vez, ao invés de declará-lo com os parênteses em branco iremos dar um nome ao `.log()` e utilizar `.getVar()` para recuperar o conteúdo atribuído às váriáveis criadas na etapa anterior. Assim estaremos enviando os dados contidos nas varíaveis, isto é, os dados inseridos pelo participante, para o documento de resultados. Segue o exemplo de uso do comando:
 ```javascript
 .log( "NOME" , getVar("NOME") )
@@ -165,7 +165,7 @@ newImage("alto_falante_icone.png")
 ```
 15. Para que o participante seja levado para a próxima parte do experimento, na qual ele analisará duas sentenças, iremos utilizar novamente um botão, que terá mais uma modificação dentre as que vimos até agora. Além de adicionarmos o comando `.log()`, adicionaremos também o comando `.remove()`, que irá remover o botão da tela assim que o mesmo for clicado. Isso se faz necessário pois não iremos declarar outro *Trial* dentro do nosso `Template()`, e portanto, tudo que adicionarmos na tela permanecerá, a não ser que seja removido por meio desse comando. Exemplo:
 ```javascript
- newButton("Próximo")
+newButton("Próximo")
             .log()
             .remove()
 ,
@@ -174,12 +174,12 @@ newImage("alto_falante_icone.png")
 ```javascript
 getImage("alto_falante_icone.png")
             .remove()
-        ,
+,
 ```        
 17. Depois de ouvir o áudio, o participante irá ler duas sentenças, portanto iremos utilizar dois `newText()`, entretanto, ao invés de escrevermos o texto que será impresso diretamente no elemento, utilizaremos `variable` para retomar as sentenças presentes na tabela. Exemplo:
 ```javascript
 newText("A",variable.SentencaA)
-        ,
+,
 ```        
 - Note que demos um nome ao novo texto criado: **A**. Esse nome será utilizado no comando a seguir.
 
@@ -189,17 +189,17 @@ newCanvas( 1400 , 700 )
             .add( 50 , 100 , getText("A") )
             .add( 750 , 100 , getText("B") )
             .print() 
-        ,
+,
 ```
 - A medida à esquerda corresponde à **largura** da tela, enquanto a medida à direita corresponde à **altura** da tela. Perceba que no posicionamento das nossa sentenças a altura é a mesma, enquanto a largura é diferente, porque queremos que as frases fiquem lado a lado, mas não em cima uma da outra. Repare também que aqui utilizamos o comando `.print()`, isso ocorre pois o `newCanvas()` é um *Element*, e como todo outro *Element* visual precisa ser impresso para que suas alterações se tornem visíveis.
 
 19. O último comando novo que utilizaremos em nosso script é o `newSelector()`. Esse comando possibilita que o participante escolha uma das sentenças, tanto pelo _**mouse**_ quanto pelo **teclado**. Para que a seleção por *mouse* das sentenças possa ocorrer, dentro do `newSelector()` utilizaremos novamente o comando `.add()` em conjunto com `getText()` para retomar as sentenças exibidas. Já para a seleção por teclas será utilizado o comando `.keys()`, dentro do qual indicaremos entre aspas quais teclas serão as seletoras. Iremos declarar ainda os comandos `.wait()` e `.log()`. Exemplo:
 ```javascript
 newSelector()
-    .add( getText("A") , getText("B") )
-    .keys("A","B")
-    .log()
-    .wait()
+          .add( getText("A") , getText("B") )
+          .keys("A","B")
+          .log()
+          .wait()
 )
 ```
 20. Após fechar o *Trial* mas antes de fechar o `Template()` adicionaremos os dois últimos comandos `.log()`. Nesse caso eles irão retomar outras duas colunas da tabela criada: **Item** e **Group**, portanto iremos utilizar `variable`:
@@ -213,54 +213,54 @@ newSelector()
 //Indica o uso da tabela "treino_script_auditivo.csv"
 Template("tabela_script_auditivo.csv",
 // "variable" vai automaticamente apontar para cada linha da tabela "tabela_script_auditivo.csv"
-    variable => newTrial( "Experimento",
+         variable => newTrial( "Experimento",
 //"variable" aponta para todas as linhas da coluna "AudioExperimento" da tabela "tabela_script_auditivo.csv" e toca o audio referente a elas
-        newAudio("AudioExperimento", variable.AudioExperimento)
-            .play()
-        ,
+                  newAudio("AudioExperimento", variable.AudioExperimento)
+                           .play()
+                  ,
 //Exibe na tela a imagem "alto_falante_icone.png"
-        newImage("alto_falante_icone.png")
-            .size( 90 , 90 )
-            .print()
+                  newImage("alto_falante_icone.png")
+                           .size( 90 , 90 )
+                           .print()
        
-        ,
+                  ,
 //Cria um botão nomeado "Próximo", envia para o arquivo "results" a informação de quando ele foi pressionado e remove ele da tela
-        newButton("Próximo")
-            .log()
-            .remove()
-        ,
+                  newButton("Próximo")
+                           .log()
+                           .remove()
+                  ,
 //Remove a imagem "alto_falante_icone.png" 
-        getImage("alto_falante_icone.png")
-            .remove()
-        ,
-        //Cria um novo texto nomeado "A" e "variable" aponta para todas as linhas da coluna "SentencaA" e imprime o texto presente nelas 
-        newText("A",variable.SentencaA)
-        ,
-        newText("B",variable.SentencaB)
-        ,
-        //Cria um canvas (uma caixa) e coloca os textos "A" e "B" um ao lado do outro
-        newCanvas( 1400 , 700 )
-            .add( 50 , 100 , getText("A") )
-            .add( 750 , 100 , getText("B") )
-            .print() 
-        ,
-        //Possibilita a seleção dos textos "A" e "B" através do mouse ou das teclas "A" e "B". Também envia para o arquivo "result" qual texto foi selecionado
-        newSelector()
-            .add( getText("A") , getText("B") )
-            .keys("A","B")
-            .log()
-            .wait()
-    )
+                   getImage("alto_falante_icone.png")
+                           .remove()
+                  ,
+//Cria um novo texto nomeado "A" e "variable" aponta para todas as linhas da coluna "SentencaA" e imprime o texto presente nelas 
+                   newText("A",variable.SentencaA)
+                  ,
+                   newText("B",variable.SentencaB)
+                  ,
+//Cria um canvas (uma caixa) e coloca os textos "A" e "B" um ao lado do outro
+                  newCanvas( 1400 , 700 )
+                           .add( 50 , 100 , getText("A") )
+                           .add( 750 , 100 , getText("B") )
+                           .print() 
+                  ,
+//Possibilita a seleção dos textos "A" e "B" através do mouse ou das teclas "A" e "B". Também envia para o arquivo "result" qual texto foi selecionado
+                  newSelector()
+                           .add( getText("A") , getText("B") )
+                           .keys("A","B")
+                           .log()
+                           .wait()
+                  )
          
-    //Envia para o arquivo "results" o conteúdo da coluna "Group" 
-    .log("Group", variable.Group)
-    .log("Item", variable.item)
+//Envia para o arquivo "results" o conteúdo da coluna "Group" 
+         .log("Group", variable.Group)
+         .log("Item", variable.item)
 );
 ```
 21. Crie mais um *Trial* intituludado **Final** e coloque alguns `newText()` com agradecimentos pela participação. Não se esqueça também de adicionar um comando `.wait()` no último `newText()` criado, pois como os resultados já foram salvos (devido ao comando que colocamos no `Sentence()`) não a necessidade de colocar um botão aqui. Exemplo:
 ```javascript
 newText("<p> Você receberá um e-mail com a sua declaração de participação.</p>")
-        .wait()
+         .wait()
 ```
 22. Após testar o seu programa e corrigir os erros com a ajuda do *debug*, será necessário fazer dois ajustes finais para que seu experimento esteja pronto para distribuição. O primeiro deles será ajeitar a barra de progresso, que até esse momento não deverá estar se completando mesmo ao final do experimento. Para corrigir tal erro será necessário usar o comando: `.setOption("countsForProgressBar",false);`. Esse deverá ir ao final do experimento, após o seu último *Trial*.
 O outro ajuste será desativar o *debug*, e, para isso utilizaremos o código: `PennController.DebugOff();`. Esse deverá ir bem no início do script, logo após o comando: `PennController.ResetPrefix(null);`.
