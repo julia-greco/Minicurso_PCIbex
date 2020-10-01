@@ -1,6 +1,6 @@
 
 
-## Instruções para criação do Script de Experimento Auditivo na plataforma Github
+## Instruções para criação do script de Experimento Auditivo na plataforma Github
 
 1. Crie um documento com extensão **.js**  dentro de uma pasta intitulada **data_includes** no seu diretório do Github. Para isso vá em **create new file**, escreva o nome da pasta indicado, digite barra ( a inclinada para a direita) e escreva o nome do seu documento de extensão **.js** (exemplo:**data_includes/meu_script.js**). Não se esqueça de que não pode haver **espaços** nem **caracteres especiais** no nome do seu script. Clique em **Commit new file** no final da página.
 
