@@ -40,14 +40,6 @@ newTrial("Participante",
 //Cria uma caixa de texto nomedada "Nome" para receber o nome do participante  
          newTextInput("Nome")
          ,
-         newText("<p>Por favor, escreva o seu E-MAIL na caixa abaixo.</p>")
-         ,
-         newTextInput("Email")
-         ,
-         newText("<p>Escreva sua IDADE na caixa a abaixo.</p>")
-         ,
-         newTextInput("Idade")
-         ,
          newText("<p>Agora selecione sua ESCOLARIDADE na caixa abaixo e aperte o botão 'Iniciar' para começar </p>")
          , 
 //Cria uma caixa com seletores nomeada "Escolaridade" para que o participante selecione sua escolaridade
@@ -64,37 +56,18 @@ newTrial("Participante",
     newVar("NOME")
         .global()
         .set( getTextInput("Nome") )
-    ,
-    newVar("EMAIL")
-        .global()
-        .set( getTextInput("Email") )
-    ,
-    newVar("AGE")
-        .global()
-        .set( getTextInput("Idade") )
-         
 )
 
 //Envia para o arquivo "results" o conteúdo da variável "NOME"
 .log( "NOME" , getVar("NOME") )
-.log( "EMAIL" , getVar("EMAIL") )
-.log( "AGE" , getVar("AGE") )
 
 //Nova tela - Tela de instruções do treino
 newTrial("Instrucoes",
          
-    newText("<p>Vamos realizar um pequeno treino para você se familiarizar com o experimento.</p>")
-    ,
     newText("<p>INSTRUÇÕES:</p>")
     ,
-    newText("<p>Ouça a frase com atenção e depois clique no botão 'Próximo' para ver as duas opções de interpretação: <strong>A</strong> e <strong>B</strong>.</p>")
-    ,
-    newText("<p>Clique em cima da opção que você acha que é a melhor, de acordo com a frase que você ouviu.</p>")
-    ,
-    newText("<p>Se possível, utilize fones de ouvido para realizar o experimento.</p>")
-    ,
-    newText("<p>Aperte 'Iniciar' para começar.</p>")
-    ,
+    newText("<p>Ouça a frase com atenção e depois clique em cima de uma das sentenças, <strong>A</strong> ou <strong>B</strong>, que você considerar a melhor interepretação.</p>")
+    ,    
     //Cria um novo botão nomeado "Iniciar" e envia para o arquivo "results" a informação de quando ele é pressionado
     newButton("Iniciar")
         .log()
