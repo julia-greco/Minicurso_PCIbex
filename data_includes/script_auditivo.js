@@ -103,8 +103,8 @@ Template("tabela_script_auditivo.csv",
         ,
         //Cria um canvas (uma caixa) e coloca os textos "A" e "B" um ao lado do outro
         newCanvas( 1400 , 700 )
-            .add( 50 , 100 , getText("A") )
-            .add( 750 , 100 , getText("B") )
+            .add( 150 , 100 , getText("A") )
+            .add( 850 , 100 , getText("B") )
             .print() //Agora, dentro do canvas, é que os textos "A" e "B" serão impressos na tela
         ,
         //Possibilita a seleção dos textos "A" e "B" através do mouse ou das teclas "A" e "B". Também envia para o arquivo "result" qual texto foi selecionado
