@@ -62,7 +62,7 @@ Com a adição dessa última coluna, nossa tabela está pronta para ser utilizad
 
 ### Especificações da tabela para uso no PCIbex
 
-O primeiro detalhe importante e crucial é que a tabela deve estar formatada na extensão **.csv**. Nesse estilo, a tabela deverá ter as suas colunas separas por **vírgulas**. O exemplo que montamos ficaria assim:
+O primeiro detalhe crucial é que a tabela deve estar formatada na extensão **.csv**. Nesse estilo, a tabela deverá ter as suas colunas separas por **vírgulas**. O exemplo que montamos ficaria assim:
 ```
 Audio, Sentença A, Sentença B, Item, Group
 audio1.wav, A. O delegado dirigia uma Ferrari conversível., B. A mulher dirigia uma Ferrari conversível., 1, A 
@@ -70,5 +70,29 @@ audio2.wav, A. O assessor foi promovido., B. O assessor foi demitido., 2, A
 audio3.wav, A. O primo de Carlos estava no Amapá., B. O amigo morava no Amapá., 3, A
 ```
 Mas **cuidado** pois em alguns computadores, apesar de se salvar a tabela em **.csv**, a tabela vem separada por **ponto e vírgula**. Para resolver esse problema acesse esse [tutorial](http://ptcomputador.com/Sistemas/windows/220763.html). Caso não funcione, acesse essa [solução de problemas](https://www.clubedohardware.com.br/topic/1024802-como-configurar-delimitador-csv-de-%C2%B4%C2%B4-para-%C2%B4%C2%B4/?do=findComment&comment=5636864)
+
+Outra especificação importante para o funcionamento da tabela é a presença de espaços. Apesar do nosso exemplo acima, para que não ocorra nenhum erro ao se executar a tabela, é necessário que a mesma não apresente nenhum espaço além do enter que delimita as linhas. Após essa correção nossa tabela ficaria assim:
+```
+Audio,SentençaA,SentençaB,Item,Group
+audio1.wav,A. O delegado dirigia uma Ferrari conversível.,B. A mulher dirigia uma Ferrari conversível.,1,A 
+audio2.wav,A. O assessor foi promovido.,B. O assessor foi demitido.,2,A
+audio3.wav,A. O primo de Carlos estava no Amapá.,B. O amigo morava no Amapá.,3,A
+```
+Por fim, um último detalhe que deve se ter em mente é o não reconhecimento de **diacríticos** pela plataforma. Isto se aplica também às tabelas, e caso você queira exporta-la diretamente para o *PCIbex Farm* é necessário utilizar os códigos em [**html**](http://www.lsi.usp.br/~help/html/iso.html) correspondentes aos caractéres especiais. Aconselhamos a não se utilizar, mesmo com o código **html**, nenhum diacrítico nos nomes das colunas, já que essas serão utilizadas como variáveis dentro do *script*. Dessa forma, com todas as alterações necessárias, o resultado final é esse:
+```
+Audio,SentencaA,SentencaB,Item,Group
+audio1.wav,A. O delegado dirigia uma Ferrari conversível.,B. A mulher dirigia uma Ferrari conversível.,1,A 
+audio2.wav,A. O assessor foi promovido.,B. O assessor foi demitido.,2,A
+audio3.wav,A. O primo de Carlos estava no Amapá.,B. O amigo morava no Amapá.,3,A
+```
+
+Finalmente a sua tabela está pronta! 
+
+Espero que esse tutorial tenha contribuído para a compreensão de como construir uma tabela para uso no *PCIbex*.
+
+Muito obrigada por acessá-lo,
+
+Júlia Greco
+
 
 
