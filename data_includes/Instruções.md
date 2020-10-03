@@ -1,11 +1,70 @@
 
 
-## Instruções para criação de um script para experimento auditivo na plataforma Github
+## Instruções para criação de um script para experimento auditivo na plataforma GitHub
+
+A plataforma *PCIbex* pode ser, no início, bem complicada de ser utilizar para usuários inexperientes em programação. Mas após acessar o [tutorial](https://www.pcibex.net/wiki/00-overview/) fornecido no site e ler alguns recursos na documentação, o seu funcionamento começa a ficar mais claro. Contudo o seu uso ainda pode ser prejudicado pelas próprias limitações da plataforma.
+
+Esse tutorial pretende guiá-lo através da criação de um *script* para um experimento auditivo dentro do GitHub, a fim de evitar certos estresses que o servidor do *PCIbex* pode causar. Mas antes de mergulharmos em linhas e mais linhas de código, é interessante ter alguns recursos prontos e preparados para facilitar o trabalho que teremos pela frente.
+
+### Antes de começar
+
+Antes de começarmos a programar, é importante que já se tenha montado uma pasta denominada **chunk_includes** com os estímulos (no nosso caso áudios), imagens (para ícones, etc.) e a tabela. Nesse tutorial não iremos nos aprofundar em como montar uma tabela para uso no *PCIbex*, aconselhamos a consulta a uma [documentação](https://github.com/julia-greco/minicursoPCibex/blob/master/chunk_includes/Instru%C3%A7%C3%B5es.md) que explica com detalhes essa questão. 
+
+Aconselhamos também que se prepare um documento com um planejamento de como será a estrutura do experimento. De quantas telas terá, se cada tela terá um botão ou não, etc. Nesse repositório há um [exemplo]() da estrutura do experimento que desenvolveremos aqui.
+
+É interessante também que se mantenha uma mesma formatação em todo o *script* para facilitar a localização de erros, como esquecer de colocar uma vírgula ou um parênteses final. Não mantenha todos os códigos alinnhados um em baixo do outro, construa hierarquias através de espaços e coloque vírgulas e parentêses alinhados verticalmente com código ao qual estão ligados. Um exemplo de uma formatação funcional seria:
+```
+Header(
+         defaultText
+                  .css("font-size","1.2em")
+                  .print()
+         ,
+         defaultTextInput
+                  .css("font-size","1.2em")
+                  .print()
+         ,
+         defaultButton
+                  .css("font-size","1.2em")
+                  .center()
+                  .print()
+                  .wait()   
+)
+```
+**Perceba** como é fácil de compreender com essa estrutura que **Header** abriga **defaultText, defaultTextInput, e defaultButton** e que esses por sua vez abrigam **.css, .print, .center, .wait**. Tente se lembrar de que os comandos são processados **verticalmente**, como em uma lista. 
+
+Da mesma forma, sugerimos a utilização da função de comentário para não só deixar o seu código mais organizado, mas também para que você possa se lembrar o que cada comando realiza. Essa função é marcada pelo uso de **//** antes do texto comentando. Um exemplo do seu uso é:
+```javascript
+//Cria um cabeçalho. Todos os comandos dentro do cabeçalho serão rodados automaticamente antes de cada "trial"
+Header(
+//Define que todo texto será impresso na tela e que o tamanho da fonte será "1.2em"
+         defaultText
+            .css("font-size","1.2em")
+            .print()
+         ,
+//Define que toda caixa de texto será impressa na tela e que o tamanho da fonte será "1.2em"
+         defaultTextInput
+            .css("font-size","1.2em")
+            .print()
+         ,
+//Define que todo botão será impresso na tela, que o tamanho da fonte será "1.2em" e que o participante será obrigado a interagir com ele para prosseguir com o experimento
+         defaultButton
+            .css("font-size","1.2em")
+            .center()
+            .print()
+            .wait()        
+)
+```
+**Note** que o texto dos comentários está na cor **cinza**.
+
+Por fim, aconselhamos a utilização da ferramenta *debugger* durante a construção do *script*. Ela não só aponta os erros no código mas também oferece a possibilidade de pular telas inteiras, agilizando o processo de teste. Infelizmente nesse tutorial não será possível aprofundar no funcionamente do *debugger*, portanto sugerimos que leia a parte referente à [ferramenta](https://www.pcibex.net/wiki/025-debugger/) no tutorial fornecido no site do *PCIbex*. 
+
+Agora sim estamos prontos para começar.
+
+### Criando o *script*
 
 1. Crie um documento com extensão **.js**  dentro de uma pasta intitulada **data_includes** no seu diretório do Github. Para isso vá em **create new file**, escreva o nome da pasta indicado, digite barra ( a inclinada para a direita) e escreva o nome do seu documento de extensão **.js** (exemplo:**data_includes/meu_script.js**). Não se esqueça de que não pode haver **espaços** nem **caracteres especiais** no nome do seu script. Clique em **Commit new file** no final da página.
 
-2.  Clique no nome do documento apenas criado e depois clique no ícone de caneta/lápis para começar a editar o seu script. 
-**Dica**: utilize a função de comentário (qualquer texto que seja precedido por duas barras, **//**) para deixar o seu script mas organizado e auxiliá-lo na hora de revisar algum erro possível. Comente o que você acha que o código que você escreveu está realizando, assim, quando o *debug* localizar um erro você saberá com mais facilidade como e onde consertá-lo.
+2.  Clique no nome do documento apenas criado e depois clique no ícone de lápis para começar a editar o seu script. 
 
 3.  O Primeiro comando que deve ser escrito é `PennController.ResetPrefix(null);`. Esse comando é essencial para que o resto dos seus comandos funcione. Ele inativa os prefixos que acompanham as declarações de elementos do PennController, tornando a linguagem mais simples e limpa. Para mais informações sobre esse tópico acesse a página da documentação sobre [Reset Prefix](https://www.pcibex.net/wiki/penncontroller-resetprefix/)
 
@@ -30,9 +89,7 @@ Header(
                   .css("font-size","1.2em")
                   .center()
                   .print()
-                  .wait()
-         ,
-         
+                  .wait()   
 )
 ```
 - O tamanho da fonte está em uma medida muito utilizada dentro da programação, o *em*. Se quiser se informar mais sobre isso acesse o artigo da [Wikipedia](https://en.wikipedia.org/wiki/Em_(typography)) sobre a medida.
@@ -138,7 +195,7 @@ newTrial("Participante",
 newButton("Iniciar")
          .log()
 ```        
-12. O *Trial* a seguir será o mais crucial, já que é nele que desenvolveremos a estrutura principal do experimento. Diferentemente das telas que contruímos até agora, iremos iniciar com o comando `Template()`. Esse comando irá agir de uma forma semelhante ao comando `default`, no entanto, ao invés de definir previamente a característica de algum elemento, o `Template()` irá definir a estrutura de vários *Trial* cujo os dados serão processados a partir de uma tabela (para saber mais sobre a criação dessa tabela acesse a pasta **chunk_includes** nesse repositório e leia o documento [Instruções](https://github.com/julia-greco/minicursoPCibex/blob/master/chunk_includes/Instru%C3%A7%C3%B5es.md)). Assim iremos declarar o nosso novo *Trial*, nomeado **Experimento** dentro de `Template`. Exemplo de uso:
+12. O *Trial* a seguir será o mais crucial, já que é nele que desenvolveremos a estrutura principal do experimento. Diferentemente das telas que contruímos até agora, iremos iniciar com o comando `Template()`. Esse comando irá agir de uma forma semelhante ao comando `default`, no entanto, ao invés de definir previamente a característica de algum elemento, o *Template* irá definir a estrutura de vários *Trial* cujo os dados serão processados a partir de uma tabela (para saber mais sobre a criação dessa tabela acesse a pasta **chunk_includes** nesse repositório e leia o documento [Instruções](https://github.com/julia-greco/minicursoPCibex/blob/master/chunk_includes/Instru%C3%A7%C3%B5es.md)). Assim iremos declarar o nosso novo *Trial*, nomeado **Experimento** dentro de *Template*. Exemplo de uso:
 ```javascript
 Template("minha_tabela.csv",
 
@@ -146,7 +203,7 @@ Template("minha_tabela.csv",
                      )
 )
 ```
-- O comando `Template()` irá receber então o nome da tabela na qual os estímulos do experimento estarão registrados. Ainda teremos a criação de uma função que apontará para todas as linhas da tabela específicada. Essa função no nosso exemplo recebeu o nome de `variable`, o mesmo nome que aparece no [tutorial](https://www.pcibex.net/wiki/00-overview/) fornecido no site do PCIbex, contudo você também a encontrará nomeada como `row` em algumas partes da documentação disponível no site.
+- O comando *Template* irá receber então o nome da tabela na qual os estímulos do experimento estarão registrados. Ainda teremos a criação de uma função que apontará para todas as linhas da tabela específicada. Essa função no nosso exemplo recebeu o nome de `variable`, o mesmo nome que aparece no [tutorial](https://www.pcibex.net/wiki/00-overview/) fornecido no site do PCIbex, contudo você também a encontrará nomeada como `row` em algumas partes da documentação disponível no site.
 
 13. Agora, dentro do novo *Trial* utilizaremos o comando `newAudio()`, que irá reproduzir os áudios indicados. Como `newAudio()` é um *Element* sonoro, ao invés de utilizar o comando `.print()` para exibi-lo utilizaremos o comando `.play()`. Exemplo:
 ```javascript
@@ -163,7 +220,7 @@ newImage("alto_falante_icone.png")
             .print()
 ,
 ```
-15. Para que o participante seja levado para a próxima parte do experimento, na qual ele analisará duas sentenças, iremos utilizar novamente um botão, que terá mais uma modificação dentre as que vimos até agora. Além de adicionarmos o comando `.log()`, adicionaremos também o comando `.remove()`, que irá remover o botão da tela assim que o mesmo for clicado. Isso se faz necessário pois não iremos declarar outro *Trial* dentro do nosso `Template()`, e portanto, tudo que adicionarmos na tela permanecerá, a não ser que seja removido por meio desse comando. Exemplo:
+15. Para que o participante seja levado para a próxima parte do experimento, na qual ele analisará duas sentenças, iremos utilizar novamente um botão, que terá mais uma modificação dentre as que vimos até agora. Além de adicionarmos o comando `.log()`, adicionaremos também o comando `.remove()`, que irá remover o botão da tela assim que o mesmo for clicado. Isso se faz necessário pois não iremos declarar outro *Trial* dentro do nosso *Template*, e portanto, tudo que adicionarmos na tela permanecerá, a não ser que seja removido por meio desse comando. Exemplo:
 ```javascript
 newButton("Próximo")
             .log()
@@ -202,11 +259,11 @@ newSelector()
           .wait()
 )
 ```
-20. Após fechar o *Trial* mas antes de fechar o `Template()` adicionaremos os dois últimos comandos `.log()`. Nesse caso eles irão retomar outras duas colunas da tabela criada: **Item** e **Group**, portanto iremos utilizar `variable`:
+20. Após fechar o *Trial* mas antes de fechar o *Template* adicionaremos os dois últimos comandos `.log()`. Nesse caso eles irão retomar outras duas colunas da tabela criada: **Item** e **Group**, portanto iremos utilizar `variable`:
 ```javascript
 .log("Group", variable.Group)
 ```
-- Depois dos comando você pode fechar o `Template()` com `);`.
+- Depois dos comando você pode fechar o *Template* com **`);`**.
 
 - O seu *Trial* do experimento deve se parecer com esse:
 ```javascript
@@ -262,8 +319,8 @@ Template("tabela_script_auditivo.csv",
 newText("<p> Você receberá um e-mail com a sua declaração de participação.</p>")
          .wait()
 ```
-22. Após testar o seu programa e corrigir os erros com a ajuda do *debug*, será necessário fazer dois ajustes finais para que seu experimento esteja pronto para distribuição. O primeiro deles será ajeitar a barra de progresso, que até esse momento não deverá estar se completando mesmo ao final do experimento. Para corrigir tal erro será necessário usar o comando: `.setOption("countsForProgressBar",false);`. Esse deverá ir ao final do experimento, após o seu último *Trial*.
-O outro ajuste será desativar o *debug*, e, para isso utilizaremos o código: `PennController.DebugOff();`. Esse deverá ir bem no início do script, logo após o comando: `PennController.ResetPrefix(null);`.
+22. Após testar o seu programa e corrigir os erros com a ajuda do *debugger*, será necessário fazer dois ajustes finais para que seu experimento esteja pronto para distribuição. O primeiro deles será ajeitar a barra de progresso, que até esse momento não deverá estar se completando mesmo ao final do experimento. Para corrigir tal erro será necessário usar o comando: `.setOption("countsForProgressBar",false);`. Esse deverá ir ao final do experimento, após o seu último *Trial*.
+O outro ajuste será desativar o *debugger*, e, para isso utilizaremos o código: `PennController.DebugOff();`. Esse deverá ir bem no início do script, logo após o comando: `PennController.ResetPrefix(null);`.
 
 Finalmente o seu experimento está pronto!
 
