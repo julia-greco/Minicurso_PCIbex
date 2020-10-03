@@ -195,7 +195,7 @@ newTrial("Participante",
 newButton("Iniciar")
          .log()
 ```        
-12. O *Trial* a seguir será o mais crucial, já que é nele que desenvolveremos a estrutura principal do experimento. Diferentemente das telas que contruímos até agora, iremos iniciar com o comando `Template()`. Esse comando irá agir de uma forma semelhante ao comando `default`, no entanto, ao invés de definir previamente a característica de algum elemento, o *Template* irá definir a estrutura de vários *Trial* cujo os dados serão processados a partir de uma tabela (para saber mais sobre a criação dessa tabela acesse a pasta **chunk_includes** nesse repositório e leia o documento [Instruções](https://github.com/julia-greco/minicursoPCibex/blob/master/chunk_includes/Instru%C3%A7%C3%B5es.md)). Assim iremos declarar o nosso novo *Trial*, nomeado **Experimento** dentro de *Template*. Exemplo de uso:
+12. O *Trial* a seguir será o mais crucial, já que é nele que desenvolveremos a estrutura principal do experimento. Diferentemente das telas que contruímos até agora, iremos iniciar com o comando `Template()`. Esse comando irá agir de uma forma semelhante ao comando `default`, no entanto, ao invés de definir previamente a característica de algum elemento, o *Template* irá definir a estrutura de vários *Trial* cujo os dados serão processados a partir de uma tabela (A mesma especificada na introdução do tutorial). Assim iremos declarar o nosso novo *Trial*, nomeado **Experimento** dentro de *Template*. Exemplo de uso:
 ```javascript
 Template("minha_tabela.csv",
 
