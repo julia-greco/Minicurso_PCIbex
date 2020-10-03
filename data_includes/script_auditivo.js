@@ -23,8 +23,7 @@ Header(
             .css("font-size","1.2em")
             .center()
             .print()
-            .wait()
-         ,         
+            .wait()       
 )
 
 
