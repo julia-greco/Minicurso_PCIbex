@@ -16,7 +16,7 @@ O material está dividido por aulas:
 - **Aula 2**: Criação de um *script* para experimento de **leitura automonitorada** e análise de resultados
 - **Aula 3**: Introdução e iniciação à plataforma *GitHub* e criação de um *script* para **Teste Auditivo**, além da análise dos resultados.
 
-Recomendamos que [baixe]() o material completo do repositório e que siga a ordem das aulas aqui explicitadas. 
+Recomendamos que [baixe](#section) o material completo do repositório e que siga a ordem das aulas aqui explicitadas. 
 
 É possível que apesar dessa divisão seja difícil de compreender onde se localizam certos documentos, como os *scripts* ou os estímulos. Portanto iremos explicar que materiais estão presentes em cada aula e onde se encontram. 
 
@@ -29,7 +29,7 @@ Na [Aula 2](https://github.com/julia-greco/Minicurso_PCIbex/tree/master/Aula%202
 Na[Aula 3](https://github.com/julia-greco/Minicurso_PCIbex/tree/master/Aula%203) há uma [apresentação](https://github.com/julia-greco/Minicurso_PCIbex/blob/master/Aula%203/Apresenta%C3%A7%C3%A3o%20GitHub.pdf) de powerpoint sobre o *GitHub*, há novamente a [apresentação](https://github.com/julia-greco/Minicurso_PCIbex/blob/master/Aula%203/Tela%20Resultados%20curso%20PCIbex.pdf) sobre os resultados, e também um diretório denominado [Teste Auditivo](https://github.com/julia-greco/Minicurso_PCIbex/tree/master/Aula%203/Teste%20Auditivo). Dentro dele se encontra dois tutoriais: um sobre a criação do [script](https://github.com/julia-greco/Minicurso_PCIbex/blob/master/Aula%203/Teste%20Auditivo/Tutorial%20Script.md) e um sobre a criação de [tabelas](https://github.com/julia-greco/Minicurso_PCIbex/blob/master/Aula%203/Teste%20Auditivo/Tutorial%20Tabela.md). Há ainda um [documento](https://github.com/julia-greco/Minicurso_PCIbex/blob/master/Aula%203/Teste%20Auditivo/Estrutura%20%20do%20Experimento.md) com um exemplo de estrutura de um experimento. Semelhante à aula dois, encontramos também duas pastas: [data_includes](https://github.com/julia-greco/Minicurso_PCIbex/tree/master/Aula%203/Teste%20Auditivo/data_includes), com o *script* de exemplo; e [chunk_includes](https://github.com/julia-greco/Minicurso_PCIbex/tree/master/Aula%203), com os estímulos, a tabela e uma imagem. 
 
 
-## Como baixar o material do repositório
+## <a name="section"></a>Como baixar o material do repositório
 
 Na [página inicial](https://github.com/julia-greco/Minicurso_PCIbex) do repositório clique no botão **Code** e selecione a opção **Download Zip**.
 
