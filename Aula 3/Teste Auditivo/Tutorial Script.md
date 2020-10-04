@@ -10,7 +10,7 @@ Esse tutorial pretende guiá-lo através da criação de um *script* para um exp
 
 Antes de começarmos a programar, é importante que já se tenha montado uma pasta denominada **chunk_includes** com os estímulos (no nosso caso áudios), imagens (para ícones, etc.) e a tabela. Nesse tutorial não iremos nos aprofundar em como montar uma tabela para uso no *PCIbex*, aconselhamos a consulta a uma [documentação](https://github.com/julia-greco/Minicurso_PCIbex/blob/master/Aula%203/Teste%20Auditivo/Tutorial%20Tabela.md) que explica com detalhes essa questão. 
 
-Aconselhamos também que se prepare um documento com um planejamento de como será a estrutura do experimento. De quantas telas terá, se cada tela terá um botão ou não, etc. Nesse repositório há um [exemplo](https://github.com/julia-greco/minicursoPCibex/blob/master/Estrutura%20%20do%20Experimento.md) da estrutura do experimento que desenvolveremos aqui.
+Aconselhamos também que se prepare um documento com um planejamento de como será a estrutura do experimento. De quantas telas terá, se cada tela terá um botão ou não, etc. Nesse repositório há um [exemplo](https://github.com/julia-greco/Minicurso_PCIbex/blob/master/Aula%203/Teste%20Auditivo/Estrutura%20%20do%20Experimento.md) da estrutura do experimento que desenvolveremos aqui.
 
 É interessante também que se mantenha uma mesma formatação em todo o *script* para facilitar a localização de erros, como esquecer de colocar uma vírgula ou um parênteses final. Não mantenha todos os códigos alinnhados um em baixo do outro, construa hierarquias através de espaços e coloque vírgulas e parentêses alinhados verticalmente com código ao qual estão ligados. Um exemplo de uma formatação funcional seria:
 ```
