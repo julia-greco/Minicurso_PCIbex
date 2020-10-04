@@ -6,6 +6,8 @@ O minicurso foi elaborado pela Professora Adjunta do PPG de linguística da UFJF
 
 Pedimos encarecidamente que, caso utilize o material aqui reunido, dê os devidos créditos às palestrantes do minicurso. Também pedimos que utilize o material extritamente para fins educacionais.
 
+**Atenção**: No momento não há todas as apresentações citadas nesse documento nas pastas. Após o final de cada aula, iremos disponibilizá-las aqui.
+
 ## Instruções para utilização do material
 
 Para os alunos inscritos no minicurso e também para aqueles interessados em montar um experimento no *PCIbex*, daremos instruções da melhor forma de utilizar o material aqui disposto.
