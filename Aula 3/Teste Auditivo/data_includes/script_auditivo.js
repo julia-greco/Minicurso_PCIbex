@@ -44,10 +44,10 @@ newTrial("Participante",
          , 
 //Cria uma caixa com seletores nomeada "Escolaridade" para que o participante selecione sua escolaridade
          newDropDown("Escolaridade", "Selecione sua escolaridade")
-        .add("Médio completo", "Superior em curso", "Superior completo", "Pós-graduação")
-        .css("font-size","1.2em")
-        .print()
-        .log() //Envia para o arquivo "results" a opção selecionada pelo participante 
+                  .add("Médio completo", "Superior em curso", "Superior completo", "Pós-graduação")
+                  .css("font-size","1.2em")
+                  .print()
+                  .log() //Envia para o arquivo "results" a opção selecionada pelo participante 
          ,
 //Cria um botão nomeado "Iniciar"
          newButton("Iniciar")
