@@ -179,11 +179,7 @@ newTrial("Participante",
          newVar("EMAIL")
                   .global()
                   .set( getTextInput("Email") )
-          ,
-         newVar("IDADE")
-                  .global()
-                  .set( getTextInput("Idade") )
-         
+          ,       
 )
 ```
 10. Antes de prosseguir para a próxima tela, faremos uso do comando `.log()` novamente, mas de uma maneira um pouco diferente. Dessa vez, ao invés de declará-lo com os parênteses em branco iremos dar um nome ao `.log()` e utilizar `.getVar()` para recuperar o conteúdo atribuído às váriáveis criadas na etapa anterior. Assim estaremos enviando os dados contidos nas varíaveis, isto é, os dados inseridos pelo participante, para o documento de resultados. Segue o exemplo de uso do comando:
